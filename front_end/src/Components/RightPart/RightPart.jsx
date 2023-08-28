@@ -3,11 +3,16 @@ import SearchIcon from '@mui/icons-material/Search';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import { Button } from '@mui/material';
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import SubscriptionModal from '../SubscriptionModal/SubscriptionModal';
 
 const RightPart = () => {
   const handleChangeTheme = () => {
     console.log('handle change theme');
   };
+
+  const [openSubscriptionModal, setOpenSubscriptionModal] = React.useState(false);
+  const handleOpenSubscriptionModal = () => setOpenSubscriptionModal(true);
+  const handleCloseSubscriptionModal = () => setOpenSubscriptionModal(false);
   return (
     <div className='py-5 sticky top'>
       <div className='relative flex items-center'>
@@ -23,6 +28,7 @@ const RightPart = () => {
         <Button
           variant='contained'
           sx={{ padding: '10px', paddingX: '20px', borderRadius: '25px' }}
+          onClick={handleOpenSubscriptionModal}
         >
           Get Verified
         </Button>
@@ -39,6 +45,12 @@ const RightPart = () => {
             <MoreHorizIcon />
           </div>
         ))}
+      </section>
+      <section>
+        <SubscriptionModal
+          open={openSubscriptionModal}
+          handleClose={handleCloseSubscriptionModal}
+        />
       </section>
     </div>
   );

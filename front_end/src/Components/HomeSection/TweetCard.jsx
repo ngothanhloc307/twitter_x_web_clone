@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import RepeatIcon from '@mui/icons-material/Repeat';
 import { Avatar, Button, Menu, MenuItem } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
@@ -8,11 +8,17 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FileUploadIcon from '@mui/icons-material/FileUpload';
 import BarChartIcon from '@mui/icons-material/BarChart';
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import ReplyModal from './ReplyModal';
 
 const TweetCard = () => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
+  const [openReplyModal, setOpenReplyModal] = useState(false);
+  const handleOpenReplyModal = () => setOpenReplyModal(true);
+  const handleCloseReplyModal = () => setOpenReplyModal(false);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
@@ -37,7 +43,7 @@ const TweetCard = () => {
     console.log('handle like tweet');
   };
   return (
-    <div className=''>
+    <React.Fragment>
       {/* {   <div className='flex items-center font-semibold text-gray-700 py-2'>
         <RepeatIcon />
         <p>You Retweet</p>
@@ -60,27 +66,29 @@ const TweetCard = () => {
                 alt=''
               />
             </div>
-            <Button
-              id='basic-button'
-              aria-controls={open ? 'basic-menu' : undefined}
-              aria-haspopup='true'
-              aria-expanded={open ? 'true' : undefined}
-              onClick={handleClick}
-            >
-              <MoreHorizIcon />
-            </Button>
-            <Menu
-              id='basic-menu'
-              anchorEl={anchorEl}
-              open={open}
-              onClose={handleClose}
-              MenuListProps={{
-                'aria-labelledby': 'basic-button',
-              }}
-            >
-              <MenuItem onClick={handleDeleteTweet}>Delete</MenuItem>
-              <MenuItem onClick={handleDeleteTweet}>Edit</MenuItem>
-            </Menu>
+            <div>
+              <Button
+                id='basic-button'
+                aria-controls={open ? 'basic-menu' : undefined}
+                aria-haspopup='true'
+                aria-expanded={open ? 'true' : undefined}
+                onClick={handleClick}
+              >
+                <MoreHorizIcon />
+              </Button>
+              <Menu
+                id='basic-menu'
+                anchorEl={anchorEl}
+                open={open}
+                onClose={handleClose}
+                MenuListProps={{
+                  'aria-labelledby': 'basic-button',
+                }}
+              >
+                <MenuItem onClick={handleDeleteTweet}>Delete</MenuItem>
+                <MenuItem onClick={handleDeleteTweet}>Edit</MenuItem>
+              </Menu>
+            </div>
           </div>
 
           <div className='mt-2'>
@@ -96,7 +104,7 @@ const TweetCard = () => {
             </div>
             <div className='py-5 flex flex-wrap justify-between items-center'>
               <div className='space-x-3 flex items-center text-gray-600'>
-                <ChatBubbleOutlineIcon className='cursor-pointer' onCLick={handleOpenReplyModel} />
+                <ChatBubbleOutlineIcon className='cursor-pointer' onClick={handleOpenReplyModal} />
                 <p>43</p>
               </div>
               <div
@@ -130,7 +138,10 @@ const TweetCard = () => {
           </div>
         </div>
       </div>
-    </div>
+      <section>
+        <ReplyModal open={openReplyModal} handleClose={handleCloseReplyModal} />
+      </section>
+    </React.Fragment>
   );
 };
 

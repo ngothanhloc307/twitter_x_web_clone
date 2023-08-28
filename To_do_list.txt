@@ -1,0 +1,29 @@
+dark theme, light theme
+user sign up
+user sign in
+google authentication
+search user
+create post image
+video post
+add emoji
+comment on tweet
+retweet
+like tweet
+fetch all user
+delete tweet
+update users details
+
+Languages using: Java, JS
+
+Framework: 
+
+Front end: react, redux, formik for handling form, 
+
+Back End: spring boot, spring security 3, jwt
+
+DB : mysql
+
+
+
+
+
