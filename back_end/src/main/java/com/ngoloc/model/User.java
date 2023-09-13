@@ -3,7 +3,6 @@ package com.ngoloc.model;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,5 +44,5 @@ public class User {
 
     @JsonIgnore
     @ManyToMany
-    private List<User> follwings = new ArrayList<>();
+    private List<User> following = new ArrayList<>();
 }
